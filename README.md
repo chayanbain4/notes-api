@@ -1,228 +1,212 @@
-complete README.md file for your project.
+A secure and modern RESTful API for a multi-user Notes Application built using
+Node.js + Express + TypeScript + Drizzle ORM + PostgreSQL.
 
-🚀 Notes API Backend
-This is a complete and secure RESTful API for a multi-user notes application. It was built as a solution to a developer assignment, demonstrating a modern backend stack with Node.js, Express, TypeScript, and Drizzle ORM.
+This backend supports user authentication (local & Google OAuth),
+JWT-based authorization, and a complete CRUD Notes API
+with advanced features like pagination and search.
 
-The API includes full user authentication (local email/password, Google OAuth) and a complete set of protected CRUD endpoints for managing notes. It also includes bonus features like pagination, search, and a secure Access/Refresh Token system.
+It’s built to demonstrate real-world backend architecture,
+including clean code practices, TypeScript safety, and robust validation.
 
+🖼️ Project Preview
 
+(Optional: replace below image with your project’s architecture or Swagger screenshot)
+
+📑 Table of Contents
 
 ✨ Features
-Authentication:
-
-User Registration (Email/Password)
-User Login (Email/Password)
-Google OAuth 2.0 Integration
-Secure Password Hashing with bcryptjs
-
-
-
-Authorization:
-Protected API routes using JSON Web Tokens (JWT).
-Secure Access Token (15 min) and Refresh Token (7 day) system.
-Token refresh endpoint (/api/auth/refresh).
-
-
-
-Notes API (CRUD):
-Create, Read, Update, and Delete notes.
-Strict Multi-Tenancy: Users can only access their own notes.
-
-
-
-Bonus Features:
-Pagination: GET /api/notes supports ?page=... and ?limit=... query params.
-Search: GET /api/notes supports a ?q=... param to search note titles
-
-
-
 
 💻 Technology Stack
-Server: Node.js, Express.js
-Language: TypeScript
-Database: PostgreSQL
-ORM: Drizzle ORM
-Validation: Zod
-Authentication: jsonwebtoken, bcryptjs, google-auth-library
-Environment: dotenv
-
-
-
-
 
 ⚙️ Setup and Installation
-Follow these steps to get the server running locally.
 
-1. Clone the Repository
+🧩 Environment Variables
+
+🔑 Google OAuth Setup
+
+📡 API Endpoints
+
+🧠 Additional Notes
+
+🧰 Scripts
+
+📝 License
+
+✨ Features
+🔐 Authentication
+
+User Registration (Email & Password)
+
+User Login (Email & Password)
+
+Google OAuth 2.0 Integration
+
+Secure Password Hashing using bcryptjs
+
+🛡️ Authorization
+
+Protected API routes using JWT
+
+Access Token (15 min) + Refresh Token (7 days)
+
+/api/auth/refresh for token renewal
+
+🗒️ Notes CRUD
+
+Create, Read, Update, Delete your own notes
+
+Strict user isolation (each user sees only their own notes)
+
+🎯 Advanced
+
+Pagination: /api/notes?page=1&limit=10
+
+Search: /api/notes?q=meeting
+
+Type-safe validation with Zod
+
+💻 Technology Stack
+Layer	Tools / Libraries
+Language	TypeScript
+Server Framework	Express.js
+Database	PostgreSQL
+ORM	Drizzle ORM
+Validation	Zod
+Authentication	JWT, bcryptjs, google-auth-library
+Environment	dotenv
+Runtime	Node.js 18+
+⚙️ Setup and Installation
+1️⃣ Clone the Repository
 git clone <your-repo-url>
 cd notes-api
 
-
-2. Install Dependencies
+2️⃣ Install Dependencies
 npm install
 
+3️⃣ Create a .env File
 
+Follow the Environment Variables
+ section below to set up credentials.
 
-3. Set Up Environment Variables
-Create a file named .env in the root of the project and fill in your values.
+4️⃣ Set Up the Database
 
-.env Template:
-# Server Port
-PORT=5001
-# PostgreSQL Database URL
-DATABASE_URL="postgresql://YOUR_POSTGRES_USER:YOUR_POSTGRES_PASSWORD@localhost:5432/YOUR_DB_NAME"
-# JWT Secrets (Use strong, random strings)
-JWT_SECRET="your-short-secret-key-for-access-tokens"
-JWT_REFRESH_SECRET="your-very-long-and-secure-secret-key-for-refresh-tokens"
-# Google OAuth 2.0 Credentials
-GOOGLE_CLIENT_ID="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET="YOUR_GOOGLE_CLIENT_SECRET"
-GOOGLE_REDIRECT_URI="http://localhost:5001/api/auth/google/callback"
-
-
-
-
-
-
-
-4. Set Up the Database
-This project uses drizzle:push for simple database setup.
-Make sure you have created your database in PostgreSQL (e.g., notes_app).
-Run the drizzle:push command. This will read your src/db/schema.ts file and create all the tables (users, notes) and columns (including refreshToken) in your database.
+Make sure PostgreSQL is running and a database (e.g., notes_app) exists.
+Then run:
 
 npm run drizzle:push
 
 
+This creates all tables (users, notes, etc.) defined in your schema.
 
-
-
-
-
-5. Run the Application
-
+5️⃣ Run the Server
 npm run dev
-The server will start on http://localhost:5001.
+
+
+Server starts at:
+➡️ http://localhost:5001
+
+🧩 Environment Variables
+# Server Configuration
+PORT=5001
+
+# PostgreSQL Database URL
+DATABASE_URL="postgresql://USER:PASSWORD@localhost:5432/notes_app"
+
+# JWT Secrets
+JWT_SECRET="your-access-token-secret"
+JWT_REFRESH_SECRET="your-refresh-token-secret"
+
+# Google OAuth 2.0
+GOOGLE_CLIENT_ID="YOUR_CLIENT_ID.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="YOUR_CLIENT_SECRET"
+GOOGLE_REDIRECT_URI="http://localhost:5001/api/auth/google/callback"
+
 🔑 Google OAuth Setup
-To test Google login, you must:
-Go to the Google Cloud Console.
-Create a new project.
-Go to "Credentials" and "Create Credentials" > "OAuth client ID".
-Select "Web application".
-Add an "Authorized JavaScript origin": http://localhost:5001
-Add an "Authorized redirect URI": http://localhost:5001/api/auth/google/callback
-Copy the "Client ID" and "Client Secret" into your .env file.
-📡 API Endpoints (How to Test)
-Use Postman or a similar API client to test the endpoints.
 
+Go to Google Cloud Console
+.
 
+Create a new project → Navigate to APIs & Services → Credentials.
 
+Choose OAuth client ID → Select Web application.
 
+Add:
 
+Authorized JavaScript origins: http://localhost:5001
 
-Authentication
+Authorized redirect URI: http://localhost:5001/api/auth/google/callback
+
+Copy the credentials into your .env file.
+
+📡 API Endpoints
+
+Use Postman or Thunder Client to test the following routes.
+Protected routes require an Authorization: Bearer <accessToken> header.
+
+🧍 Authentication Routes
 POST /api/auth/register
-Creates a new user.
 
-Body (JSON):
-JSON
+Create a new user.
+
 {
-  "name": "Test User",
-  "email": "test@example.com",
-  "password": "password123"
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "secret123"
 }
-
-
-
-
-
-
 
 POST /api/auth/login
-Logs in a user and returns their tokens.
 
-Body (JSON):
-JSON
+Authenticate a user and receive tokens.
+
 {
-  "email": "test@example.com",
-  "password": "password123"
+  "email": "john@example.com",
+  "password": "secret123"
 }
-Success Response (200):
 
-JSON
+
+Response:
 
 {
   "message": "Login successful",
-  "accessToken": "ey... (15-minute token)",
-  "refreshToken": "ey... (7-day token)"
+  "accessToken": "eyJhbGciOi...",
+  "refreshToken": "eyJhbGciOi..."
 }
-
-
-
-
-
-
 
 GET /api/auth/google
-Action: Do not use in Postman. Open this URL in your web browser. http://localhost:5001/api/auth/google
-Result: It will redirect you to Google to log in, and then return your tokens.
+
+Open in browser to start Google login flow.
 
 POST /api/auth/refresh
-Uses a valid refreshToken to get a new accessToken.
 
-Body (JSON):
-JSON
-{
-  "refreshToken": "PASTE_YOUR_REFRESH_TOKEN_HERE"
-}
-Success Response (200):
-
-JSON
+Use a refresh token to get a new access token.
 
 {
-  "accessToken": "ey... (A new 15-minute token)"
+  "refreshToken": "your-refresh-token"
 }
-Notes API
-All Notes routes require an accessToken. In Postman, set this in the Authorization tab:
 
-Type: Bearer Token
-
-Token: PASTE_YOUR_accessToken_HERE
-
-
-
-
-
+🗒️ Notes Routes
 POST /api/notes
-Creates a new note.
 
-Body (JSON):
-JSON
+Create a new note.
+
 {
   "title": "My First Note",
-  "content": "This is the content for my note."
+  "content": "Hello, this is my note."
 }
 
-
-
-
-
-
 GET /api/notes
-Gets all notes for the logged-in user.
 
-Query Params (Optional):
-?page=1: Which page to get.
-?limit=10: How many notes per page.
-?q=project: Search query to filter by title.
+Retrieve all user notes with optional pagination or search.
+Example:
 
-Example Request: GET http://localhost:5001/api/notes?page=1&limit=5&q=project
+GET /api/notes?page=1&limit=5&q=project
 
-Success Response (200):
 
-JSON
+Response:
+
 {
   "notes": [
-    { "id": 1, "title": "Note about project", ... }
+    { "id": 1, "title": "Project Notes", "content": "..." }
   ],
   "meta": {
     "page": 1,
@@ -232,30 +216,44 @@ JSON
   }
 }
 
-
-
-
-
-
-
-
 GET /api/notes/:id
-Gets a single note by its ID (e.g., /api/notes/1).
+
+Get a note by ID.
 
 PATCH /api/notes/:id
-Updates a note by its ID (e.g., /api/notes/1).
 
-Body (JSON):
-JSON
+Update a note.
+
 {
-  "title": "My Updated Title",
-  "content": "The content has been updated."
+  "title": "Updated Note",
+  "content": "Updated content"
 }
 
-
-
-
-
-
 DELETE /api/notes/:id
-Deletes a note by its ID (e.g., /api/notes/1).
+
+Delete a note by ID.
+
+🧠 Additional Notes
+
+Passwords are hashed with bcryptjs
+
+JWTs are signed securely and validated on each request
+
+Zod validates all incoming payloads
+
+The project follows MVC folder structure:
+
+src/
+├── controllers/
+├── routes/
+├── db/
+├── validators/
+├── utils/
+└── server.ts
+
+🧰 Scripts
+Command	Description
+npm run dev	Start development server with Nodemon
+npm run build	Compile TypeScript to JavaScript
+npm run start	Run compiled server
+npm run drizzle:push	Sync database schema
