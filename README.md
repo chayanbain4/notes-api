@@ -68,7 +68,7 @@ Authentication	JWT, bcryptjs, google-auth-library
 Environment	dotenv
 ⚙️ Setup & Installation
 1️⃣ Clone Repository
-git clone https://github.com/<your-username>/notes-api.git
+git clone https://github.com/chayanbain4/notes-api.git
 cd notes-api
 
 2️⃣ Install Dependencies
