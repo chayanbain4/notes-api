@@ -1,4 +1,4 @@
-complete README.md file for my project.
+complete README.md file for your project.
 
 🚀 Notes API Backend
 This is a complete and secure RESTful API for a multi-user notes application. It was built as a solution to a developer assignment, demonstrating a modern backend stack with Node.js, Express, TypeScript, and Drizzle ORM.
@@ -67,14 +67,11 @@ npm install
 Create a file named .env in the root of the project and fill in your values.
 
 .env Template:
-# Server Port
+
 PORT=5001
-# PostgreSQL Database URL
 DATABASE_URL="postgresql://YOUR_POSTGRES_USER:YOUR_POSTGRES_PASSWORD@localhost:5432/YOUR_DB_NAME"
-# JWT Secrets (Use strong, random strings)
 JWT_SECRET="your-short-secret-key-for-access-tokens"
 JWT_REFRESH_SECRET="your-very-long-and-secure-secret-key-for-refresh-tokens"
-# Google OAuth 2.0 Credentials
 GOOGLE_CLIENT_ID="YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com"
 GOOGLE_CLIENT_SECRET="YOUR_GOOGLE_CLIENT_SECRET"
 GOOGLE_REDIRECT_URI="http://localhost:5001/api/auth/google/callback"
@@ -258,4 +255,4 @@ JSON
 
 
 DELETE /api/notes/:id
-Deletes a note by its ID (e.g., /api/notes/1). 
+Deletes a note by its ID (e.g., /api/notes/1).
