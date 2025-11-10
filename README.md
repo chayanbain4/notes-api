@@ -1,4 +1,4 @@
-complete README.md file for your project.
+complete README.md file for my project.
 
 🚀 Notes API Backend
 This is a complete and secure RESTful API for a multi-user notes application. It was built as a solution to a developer assignment, demonstrating a modern backend stack with Node.js, Express, TypeScript, and Drizzle ORM.
@@ -258,4 +258,4 @@ JSON
 
 
 DELETE /api/notes/:id
-Deletes a note by its ID (e.g., /api/notes/1). this is my readme file can u modify it so ook professional readme file?
+Deletes a note by its ID (e.g., /api/notes/1). 
