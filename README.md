@@ -1,6 +1,4 @@
-Here is the complete and correctly formatted README.md file.
-
-You can copy all the text from the block below and paste it directly into your README.md file on GitHub. It includes all the headings, code blocks, and bullet points for a professional-looking page.
+Here is the complete README.md file, formatted with correct Markdown for easy reading.
 
 🚀 Notes API Backend
 This is a complete and secure RESTful API for a multi-user notes application. It was built as a solution to a developer assignment, demonstrating a modern backend stack with Node.js, Express, TypeScript, and Drizzle ORM.
